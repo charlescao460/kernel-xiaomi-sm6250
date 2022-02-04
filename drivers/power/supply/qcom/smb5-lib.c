@@ -29,12 +29,7 @@
 #include "step-chg-jeita.h"
 #include "storm-watch.h"
 #include "schgm-flash.h"
-#ifdef CONFIG_DEBUG_USB
-#undef dev_dbg
-#undef pr_debug
-#define dev_dbg dev_err
-#define pr_debug pr_err
-#endif
+
 /*part of charger mode function*/
 
 typedef struct touchscreen_usb_piugin_data{
@@ -1258,8 +1253,7 @@ static inline void dump_reg(struct smb_charger *chg, u16 addr,
 	char reg_data[50] = "";
 
 	if (NULL == name) {
-		strlcat(log, "\n", sizeof(log));
-		printk(log);
+		pr_debug("%s\n", log);
 		return;
 	}
 
