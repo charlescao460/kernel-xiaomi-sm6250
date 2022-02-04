@@ -596,7 +596,7 @@ aw8624_haptic_play_mode(struct aw8624 *aw8624, unsigned char play_mode)
 
 static int aw8624_haptic_play_go(struct aw8624 *aw8624, bool flag)
 {
-	pr_info("%s enter\n", __func__);
+	pr_debug("%s enter\n", __func__);
 
 	if (flag == true) {
 		aw8624_i2c_write_bits(aw8624, AW8624_REG_GO,
@@ -1099,7 +1099,7 @@ static int16_t aw8624_haptic_effect_strength(struct aw8624 *aw8624)
 static int aw8624_haptic_play_effect_seq(struct aw8624 *aw8624,
 					 unsigned char flag)
 {
-	pr_info("%s enter  \n", __func__);
+	pr_debug("%s enter  \n", __func__);
 
 	if (aw8624->effect_id > aw8624->info.effect_id_boundary)
 		return 0;
@@ -2795,7 +2795,7 @@ static int aw8624_haptics_erase(struct input_dev *dev, int effect_id)
 	if (aw8624->osc_cali_run != 0)
 		return 0;
 
-	pr_info("%s enter\n", __func__);
+	pr_debug("%s enter\n", __func__);
 	aw8624->effect_type = 0;
 	aw8624->duration = 0;
 	return rc;
