@@ -44,7 +44,7 @@
 #include "qg-battery-profile.h"
 #include "qg-defs.h"
 
-static int qg_debug_mask = QG_DEBUG_PON | QG_DEBUG_PROFILE | QG_DEBUG_SOC;
+static int qg_debug_mask;
 module_param_named(
 	debug_mask, qg_debug_mask, int, 0600
 );
@@ -2025,7 +2025,7 @@ static int qg_get_ffc_iterm_for_chg(struct qpnp_qg *chip)
 		pr_err("Set ffc_chg_iterm = %d\n",chip->bp.ffc_chg_term_current );
 		ffc_chg_iterm = chip->bp.ffc_chg_term_current;
 	}
-	pr_err("Set ffc_chg_iterm = %d\n", ffc_chg_iterm );
+	pr_debug("Set ffc_chg_iterm = %d\n", ffc_chg_iterm );
 	return ffc_chg_iterm;
 }
 
@@ -4705,7 +4705,7 @@ static void qg_battery_soc_smooth_tracking(struct qpnp_qg *chip)
 
 	soc_changed = min(1, delta_time);
 
-	pr_info("soc:%d, last_soc:%d, raw_soc:%d, soc_changed:%d, update_now:%d, charge_status:%d, batt_ma:%d\n",
+	pr_debug("soc:%d, last_soc:%d, raw_soc:%d, soc_changed:%d, update_now:%d, charge_status:%d, batt_ma:%d\n",
 			chip->param.batt_soc, last_batt_soc, chip->param.batt_raw_soc, soc_changed, chip->param.update_now,
 			chip->charge_status, chip->param.batt_ma);
 
@@ -4781,7 +4781,7 @@ static void soc_monitor_work(struct work_struct *work)
 	if (chip->soc_reporting_ready)
 		qg_battery_soc_smooth_tracking(chip);
 
-	pr_err("soc:%d, raw_soc:%d, c:%d, s:%d\n",
+	pr_debug("soc:%d, raw_soc:%d, c:%d, s:%d\n",
 			chip->param.batt_soc, chip->param.batt_raw_soc,
 			chip->param.batt_ma, chip->charge_status);
 
