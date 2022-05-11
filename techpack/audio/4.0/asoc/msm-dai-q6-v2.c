@@ -410,7 +410,7 @@ static struct afe_param_id_group_device_tdm_cfg tdm_group_cfg = {
 	AFE_PORT_ID_QUATERNARY_TDM_RX_6,
 	AFE_PORT_ID_QUATERNARY_TDM_RX_7},
 	8,
-	48000,
+	192000,
 	32,
 	8,
 	32,
@@ -2228,7 +2228,7 @@ static int msm_dai_q6_prepare(struct snd_pcm_substream *substream,
 {
 	struct msm_dai_q6_dai_data *dai_data = dev_get_drvdata(dai->dev);
 	int rc = 0;
-
+	pr_debug("%s: dai_data->rate=%d\n",__func__,dai_data->rate);
 	if (!test_bit(STATUS_PORT_STARTED, dai_data->status_mask)) {
 		if (dai_data->enc_config.format != ENC_FMT_NONE) {
 			int bitwidth = 0;
@@ -9788,7 +9788,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM0 Playback",
 			.aif_name = "PRI_TDM_RX_0",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -9809,7 +9809,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM1 Playback",
 			.aif_name = "PRI_TDM_RX_1",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -9830,7 +9830,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM2 Playback",
 			.aif_name = "PRI_TDM_RX_2",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |  SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -9851,7 +9851,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM3 Playback",
 			.aif_name = "PRI_TDM_RX_3",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |  SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -9872,7 +9872,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM4 Playback",
 			.aif_name = "PRI_TDM_RX_4",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -9893,7 +9893,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM5 Playback",
 			.aif_name = "PRI_TDM_RX_5",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -9914,7 +9914,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM6 Playback",
 			.aif_name = "PRI_TDM_RX_6",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -9935,7 +9935,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM7 Playback",
 			.aif_name = "PRI_TDM_RX_7",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -9956,7 +9956,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM0 Capture",
 			.aif_name = "PRI_TDM_TX_0",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -9977,7 +9977,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM1 Capture",
 			.aif_name = "PRI_TDM_TX_1",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -9998,7 +9998,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM2 Capture",
 			.aif_name = "PRI_TDM_TX_2",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10019,7 +10019,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM3 Capture",
 			.aif_name = "PRI_TDM_TX_3",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10040,7 +10040,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM4 Capture",
 			.aif_name = "PRI_TDM_TX_4",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10061,7 +10061,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM5 Capture",
 			.aif_name = "PRI_TDM_TX_5",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10082,7 +10082,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM6 Capture",
 			.aif_name = "PRI_TDM_TX_6",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10103,7 +10103,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Primary TDM7 Capture",
 			.aif_name = "PRI_TDM_TX_7",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10124,7 +10124,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM0 Playback",
 			.aif_name = "SEC_TDM_RX_0",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10145,7 +10145,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM1 Playback",
 			.aif_name = "SEC_TDM_RX_1",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10166,7 +10166,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM2 Playback",
 			.aif_name = "SEC_TDM_RX_2",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10187,7 +10187,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM3 Playback",
 			.aif_name = "SEC_TDM_RX_3",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10208,7 +10208,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM4 Playback",
 			.aif_name = "SEC_TDM_RX_4",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10229,7 +10229,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM5 Playback",
 			.aif_name = "SEC_TDM_RX_5",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10250,7 +10250,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM6 Playback",
 			.aif_name = "SEC_TDM_RX_6",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10271,7 +10271,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM7 Playback",
 			.aif_name = "SEC_TDM_RX_7",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10292,7 +10292,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM0 Capture",
 			.aif_name = "SEC_TDM_TX_0",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10313,7 +10313,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM1 Capture",
 			.aif_name = "SEC_TDM_TX_1",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10334,7 +10334,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM2 Capture",
 			.aif_name = "SEC_TDM_TX_2",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10355,7 +10355,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM3 Capture",
 			.aif_name = "SEC_TDM_TX_3",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10376,7 +10376,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM4 Capture",
 			.aif_name = "SEC_TDM_TX_4",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10397,7 +10397,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM5 Capture",
 			.aif_name = "SEC_TDM_TX_5",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10418,7 +10418,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM6 Capture",
 			.aif_name = "SEC_TDM_TX_6",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10439,7 +10439,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Secondary TDM7 Capture",
 			.aif_name = "SEC_TDM_TX_7",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10460,7 +10460,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM0 Playback",
 			.aif_name = "TERT_TDM_RX_0",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10481,7 +10481,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM1 Playback",
 			.aif_name = "TERT_TDM_RX_1",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10502,7 +10502,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM2 Playback",
 			.aif_name = "TERT_TDM_RX_2",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10523,7 +10523,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM3 Playback",
 			.aif_name = "TERT_TDM_RX_3",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10544,7 +10544,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM4 Playback",
 			.aif_name = "TERT_TDM_RX_4",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10565,7 +10565,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM5 Playback",
 			.aif_name = "TERT_TDM_RX_5",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10586,7 +10586,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM6 Playback",
 			.aif_name = "TERT_TDM_RX_6",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10607,7 +10607,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM7 Playback",
 			.aif_name = "TERT_TDM_RX_7",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10628,7 +10628,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM0 Capture",
 			.aif_name = "TERT_TDM_TX_0",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10649,7 +10649,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM1 Capture",
 			.aif_name = "TERT_TDM_TX_1",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10670,7 +10670,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM2 Capture",
 			.aif_name = "TERT_TDM_TX_2",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10691,7 +10691,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM3 Capture",
 			.aif_name = "TERT_TDM_TX_3",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10712,7 +10712,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM4 Capture",
 			.aif_name = "TERT_TDM_TX_4",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10733,7 +10733,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM5 Capture",
 			.aif_name = "TERT_TDM_TX_5",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10754,7 +10754,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM6 Capture",
 			.aif_name = "TERT_TDM_TX_6",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10775,7 +10775,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Tertiary TDM7 Capture",
 			.aif_name = "TERT_TDM_TX_7",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10796,7 +10796,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM0 Playback",
 			.aif_name = "QUAT_TDM_RX_0",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10817,7 +10817,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM1 Playback",
 			.aif_name = "QUAT_TDM_RX_1",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10838,7 +10838,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM2 Playback",
 			.aif_name = "QUAT_TDM_RX_2",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10859,7 +10859,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM3 Playback",
 			.aif_name = "QUAT_TDM_RX_3",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10880,7 +10880,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM4 Playback",
 			.aif_name = "QUAT_TDM_RX_4",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10901,7 +10901,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM5 Playback",
 			.aif_name = "QUAT_TDM_RX_5",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10922,7 +10922,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM6 Playback",
 			.aif_name = "QUAT_TDM_RX_6",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10943,7 +10943,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM7 Playback",
 			.aif_name = "QUAT_TDM_RX_7",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10964,7 +10964,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM0 Capture",
 			.aif_name = "QUAT_TDM_TX_0",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -10985,7 +10985,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM1 Capture",
 			.aif_name = "QUAT_TDM_TX_1",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11006,7 +11006,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM2 Capture",
 			.aif_name = "QUAT_TDM_TX_2",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11027,7 +11027,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM3 Capture",
 			.aif_name = "QUAT_TDM_TX_3",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11048,7 +11048,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM4 Capture",
 			.aif_name = "QUAT_TDM_TX_4",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11069,7 +11069,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM5 Capture",
 			.aif_name = "QUAT_TDM_TX_5",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11090,7 +11090,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM6 Capture",
 			.aif_name = "QUAT_TDM_TX_6",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11111,7 +11111,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quaternary TDM7 Capture",
 			.aif_name = "QUAT_TDM_TX_7",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11132,7 +11132,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM0 Playback",
 			.aif_name = "QUIN_TDM_RX_0",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11153,7 +11153,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM1 Playback",
 			.aif_name = "QUIN_TDM_RX_1",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11174,7 +11174,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM2 Playback",
 			.aif_name = "QUIN_TDM_RX_2",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11195,7 +11195,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM3 Playback",
 			.aif_name = "QUIN_TDM_RX_3",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11216,7 +11216,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM4 Playback",
 			.aif_name = "QUIN_TDM_RX_4",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11237,7 +11237,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM5 Playback",
 			.aif_name = "QUIN_TDM_RX_5",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11258,7 +11258,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM6 Playback",
 			.aif_name = "QUIN_TDM_RX_6",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11279,7 +11279,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM7 Playback",
 			.aif_name = "QUIN_TDM_RX_7",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11300,7 +11300,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM0 Capture",
 			.aif_name = "QUIN_TDM_TX_0",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11321,7 +11321,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM1 Capture",
 			.aif_name = "QUIN_TDM_TX_1",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11342,7 +11342,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM2 Capture",
 			.aif_name = "QUIN_TDM_TX_2",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11363,7 +11363,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM3 Capture",
 			.aif_name = "QUIN_TDM_TX_3",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11384,7 +11384,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM4 Capture",
 			.aif_name = "QUIN_TDM_TX_4",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11405,7 +11405,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM5 Capture",
 			.aif_name = "QUIN_TDM_TX_5",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11426,7 +11426,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM6 Capture",
 			.aif_name = "QUIN_TDM_TX_6",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11447,7 +11447,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Quinary TDM7 Capture",
 			.aif_name = "QUIN_TDM_TX_7",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11468,7 +11468,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM0 Playback",
 			.aif_name = "SEN_TDM_RX_0",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11489,7 +11489,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM1 Playback",
 			.aif_name = "SEN_TDM_RX_1",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11510,7 +11510,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM2 Playback",
 			.aif_name = "SEN_TDM_RX_2",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11531,7 +11531,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM3 Playback",
 			.aif_name = "SEN_TDM_RX_3",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11552,7 +11552,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM4 Playback",
 			.aif_name = "SEN_TDM_RX_4",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11573,7 +11573,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM5 Playback",
 			.aif_name = "SEN_TDM_RX_5",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11594,7 +11594,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM6 Playback",
 			.aif_name = "SEN_TDM_RX_6",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11615,7 +11615,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM7 Playback",
 			.aif_name = "SEN_TDM_RX_7",
 			.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
-				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11636,7 +11636,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM0 Capture",
 			.aif_name = "SEN_TDM_TX_0",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11657,7 +11657,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM1 Capture",
 			.aif_name = "SEN_TDM_TX_1",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11678,7 +11678,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM2 Capture",
 			.aif_name = "SEN_TDM_TX_2",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11699,7 +11699,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM3 Capture",
 			.aif_name = "SEN_TDM_TX_3",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11720,7 +11720,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM4 Capture",
 			.aif_name = "SEN_TDM_TX_4",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11741,7 +11741,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM5 Capture",
 			.aif_name = "SEN_TDM_TX_5",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11762,7 +11762,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM6 Capture",
 			.aif_name = "SEN_TDM_TX_6",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
@@ -11783,7 +11783,7 @@ static struct snd_soc_dai_driver msm_dai_q6_tdm_dai[] = {
 			.stream_name = "Senary TDM7 Capture",
 			.aif_name = "SEN_TDM_TX_7",
 			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |
+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_192000 |
 				SNDRV_PCM_RATE_176400 | SNDRV_PCM_RATE_352800,
 			.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S24_LE |
